@@ -28,7 +28,7 @@ const lockTokens = async (cid, payer, amount, fileSize, source_file_id) => {
   const tx = await paymentInstance.connect(payer).lockTokenPayment(
     {
       id: cid,
-      minPayment: amount,
+      minPayment: amount.toString(),
       amount: (amount * 3).toString(),
       lockTime: 86400 * 6, // 6 days
       recipient: recipientAddress, //todo:

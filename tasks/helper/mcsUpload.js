@@ -8,6 +8,8 @@ const mcsUpload = async (
   const axios = require('axios')
   const FormData = require('form-data')
 
+  const { Agent } = require('https')
+
   const form = new FormData()
   form.append('duration', duration)
   form.append('file', file, fileName)
@@ -21,6 +23,8 @@ const mcsUpload = async (
       .post(`${network.config.mcs_api}/storage/ipfs/upload`, form, {
         maxContentLength: Infinity,
         maxBodyLength: Infinity,
+        maxRedirects: 0,
+        agent: new Agent({ rejectUnauthorized: false }),
         headers: {
           ...form.getHeaders(),
         },
