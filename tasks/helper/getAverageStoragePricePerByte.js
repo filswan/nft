@@ -3,7 +3,9 @@ const getAverageFilecoinStoragePrice = async () => {
   const axios = require('axios')
 
   try {
-    const response = await axios.get(`${process.env.FILSWAN_API}/stats/storage`)
+    const response = await axios.get(
+      encodeURI(`${process.env.FILSWAN_API}/stats/storage`),
+    )
     const verifedPrice = response.data?.data?.average_verified_price_per_GB_per_year?.split(
       ' ',
     )[0]
